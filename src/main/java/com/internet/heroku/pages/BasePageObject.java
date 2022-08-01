@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -78,6 +79,13 @@ public class BasePageObject {
             attempts++;
             
         }
+    }
+
+    /** Wait for alert present and switch to it */
+    protected Alert switchToAlert(){
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        webDriverWait.until(ExpectedConditions.alertIsPresent());
+        return driver.switchTo().alert();
     }
 
 
