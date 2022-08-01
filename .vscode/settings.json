@@ -1,0 +1,6 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.dependency.packagePresentation": "hierarchical",
+    "maven.executable.preferMavenWrapper": true,
+    "maven.executable.path": "/Applications/Software/apache-maven-3.8.6/bin/mvn"
+}

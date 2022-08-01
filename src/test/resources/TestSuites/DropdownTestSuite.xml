@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="DropdownTestSuite" verbose="1">
+
+    <test name="DropdownTest">
+        <classes>
+            <class name="com.internet.heroku.dropdowntests.DropdownTest"></class>
+        </classes>
+    </test>
+</suite>
