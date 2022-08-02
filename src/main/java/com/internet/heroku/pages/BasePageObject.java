@@ -1,7 +1,9 @@
 package com.internet.heroku.pages;
 
 import java.time.Duration;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
@@ -56,6 +58,16 @@ public class BasePageObject {
         return driver.getCurrentUrl();
     }
 
+    /** Get title of current page */
+    public String getCurrentPageTitle(){
+        return driver.getTitle();
+    }
+
+    /** Get source of current Page */
+    public String getCurrentPageSource(){
+        return driver.getPageSource();
+    }
+
     /** Wait for specific ExpectedCondition for given amount of time */
     private void waitFor(ExpectedCondition<WebElement> condition, Duration timeOut){
         timeOut =  timeOut !=null ? timeOut : Duration.ofSeconds(30);
@@ -88,5 +100,23 @@ public class BasePageObject {
         return driver.switchTo().alert();
     }
 
+    public void switchToWindowWithTitle(String expectedTitle){
+        //Switching to new window
+        String firstWindow = driver.getWindowHandle();
+
+        Set<String> allWindows = driver.getWindowHandles();
+        Iterator<String> windowsIterator = allWindows.iterator();
+
+        while(windowsIterator.hasNext()){
+            String windowHandle = windowsIterator.next().toString();
+            if(!windowHandle.equals(firstWindow)){
+                driver.switchTo().window(windowHandle);
+                if(getCurrentPageTitle().equals(expectedTitle)){
+                    break;
+                }
+            }
+
+        }
+    }
 
 }
